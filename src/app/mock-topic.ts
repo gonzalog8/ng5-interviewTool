@@ -1,4 +1,4 @@
-import { Topic } from './topic';
+import { Topic } from './Topic';
 
 export const MOCKTOPIC: Topic[] = [
     { 'id': 1, 'title': 'Object Oriented Programming', 'glbAvg' : 4.1 },
