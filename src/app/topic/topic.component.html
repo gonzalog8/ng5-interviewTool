@@ -1,0 +1,15 @@
+<ul class="topic-list">
+  <li *ngFor="let topic of topics" class="topic-list-item">
+    <mat-expansion-panel class="topic-header" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{topic.title}}
+          </mat-panel-title>
+          <mat-panel-description>
+              Global Average Scoring {{topic.glbAvg}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-question [topicId]=topic.id></app-question>    
+    </mat-expansion-panel>
+  </li>
+</ul>

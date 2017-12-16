@@ -1,0 +1,17 @@
+  <ul class="question-list">
+  <li *ngFor="let q of questions" class="question-list-item">
+    <mat-expansion-panel *ngIf="q.topicId == topicId"
+    class="question-header" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{q.title}}
+        </mat-panel-title>
+        <mat-panel-description>
+            Global Average Scoring {{q.glbAvg}} 
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+       <!-- TopicId= {{topicId}} -->
+       <app-answer></app-answer>
+    </mat-expansion-panel>
+  </li>
+</ul>

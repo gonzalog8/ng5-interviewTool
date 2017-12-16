@@ -1,0 +1,13 @@
+<mat-grid-list cols="3" rowHeight="3:1">
+  <mat-grid-tile>
+    <span>Answer:  </span> <mat-slider min=1 max=5 step=1 tick-interval=1 thumbLabel=ture> </mat-slider>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-form-field class="answer-notes">
+      <textarea matInput matTextareaAutosize placeholder="Notes"></textarea>
+    </mat-form-field>
+  </mat-grid-tile>  
+  <mat-grid-tile>
+    <button mat-raised-button color="primary">Save</button>
+  </mat-grid-tile>  
+</mat-grid-list> 
