@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { QuestionService } from '../question.service';
 import { Question } from '../question';
 
 @Component({
@@ -8,18 +7,13 @@ import { Question } from '../question';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-  questions: Question [];
-  @Input() topicId: number;
+  @Input() questions: Question[];
 
-  getQuestions(): void {
-    this.questions = this.questionService.getQuestions();
-  }
 
-  constructor(private questionService: QuestionService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.getQuestions();
   }
 
 }

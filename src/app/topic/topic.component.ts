@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { TopicService } from '../topic.service';
+import { Component, OnInit, Input } from '@angular/core';
 import { Topic } from '../topic';
 
 @Component({
@@ -9,17 +8,14 @@ import { Topic } from '../topic';
 })
 
 export class TopicComponent implements OnInit {
-  topics: Topic [];
+  @Input() topics: Topic [];
 
-  getTopics(): void {
-    this.topics = this.topicService.getTopics();
+  constructor() {
   }
-
-  constructor(private topicService: TopicService) {
-  }
-
   ngOnInit() {
-    this.getTopics();
   }
 
+  addQuestion(topicId) {
+    console.log('New Question to be added for topicId:' + topicId);
+  }
 }

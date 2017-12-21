@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { QuestionnaireService } from '../questionnaire.service';
+import { Topic } from '../topic';
 
 @Component({
   selector: 'app-questionnaire',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./questionnaire.component.css']
 })
 export class QuestionnaireComponent implements OnInit {
+  topics: Topic[];
 
-  constructor() { }
+  getQuestionnaire() {
+    this.topics = this.questionnaireService.getQuestionnaire();
+  }
+  constructor(private questionnaireService: QuestionnaireService) { }
 
   ngOnInit() {
+    this.getQuestionnaire();
   }
 
 }

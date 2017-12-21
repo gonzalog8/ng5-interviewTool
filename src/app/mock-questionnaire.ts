@@ -1,4 +1,6 @@
-export const MOCKQUESTIONNAIRE: Object[] = [
+import { Topic } from './topic';
+
+export const MOCKQUESTIONNAIRE: Topic[] = [
     { 'id': 1,
       'title': 'Object Oriented Programming',
       'glbAvg' : 4.1,

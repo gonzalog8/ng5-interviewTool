@@ -9,7 +9,7 @@ import { MatSliderModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatGridListModule } from '@angular/material';
 
-import { TopicService } from './topic.service';
+import { QuestionnaireService } from './questionnaire.service';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -18,7 +18,6 @@ import { HeaderComponent } from './header/header.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { TopicComponent } from './topic/topic.component';
 import { QuestionComponent } from './question/question.component';
-import { QuestionService } from './question.service';
 import { AnswerComponent } from './answer/answer.component';
 
 
@@ -44,7 +43,7 @@ import { AnswerComponent } from './answer/answer.component';
     MatButtonModule,
     MatGridListModule
   ],
-  providers: [ TopicService, QuestionService ],
+  providers: [ QuestionnaireService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
