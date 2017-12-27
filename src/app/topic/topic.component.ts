@@ -11,19 +11,20 @@ import { NewQuestionDialogComponent } from '../new-question-dialog/new-question-
 
 export class TopicComponent implements OnInit {
   @Input() topics: Topic [];
-  newQuestion: String;
 
   constructor(public dialog: MatDialog) {}
 
-  addQuestion(topicId): void {
+  addQuestion(topicIdx, topicTitle): void {
     let dialogRef = this.dialog.open(NewQuestionDialogComponent, {
-      width: '250px',
-      data: { topicId: topicId }
+      width: '550px',
+      data: { topicIdx: topicIdx, topicTitle: topicTitle }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed and the question was: ' + result);
-      this.newQuestion = result;
+      console.log('The dialog was closed and the question was: ' + result + '. TopicIDX: ' + topicIdx);
+      if (result) {
+        this.topics[topicIdx].questions.push({'id': 44, 'title': result, 'glbAvg': 0});
+      }
     });
   }
 

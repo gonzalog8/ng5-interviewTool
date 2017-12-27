@@ -1,5 +1,5 @@
 <ul class="topic-list">
-  <li *ngFor="let topic of topics" class="topic-list-item">
+  <li *ngFor="let topic of topics; let idx = index" class="topic-list-item">
     <mat-expansion-panel class="topic-header" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
       <mat-expansion-panel-header>
           <mat-panel-title>
@@ -10,7 +10,7 @@
           </mat-panel-description>
         </mat-expansion-panel-header>
         <app-question [questions]=topic.questions></app-question>    
-        <button mat-raised-button color="primary" (click)=addQuestion(topic.id)>Add Quesion</button>
+        <button mat-raised-button color="primary" (click)="addQuestion(idx, topic.title)">Add Quesion</button>
       </mat-expansion-panel>
   </li>
 </ul>
