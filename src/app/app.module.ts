@@ -11,7 +11,7 @@ import { MatSliderModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatGridListModule } from '@angular/material';
 
-import { QuestionnaireService } from './questionnaire.service';
+import { DataService } from './data.service';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -49,7 +49,7 @@ import { NewQuestionDialogComponent } from './new-question-dialog/new-question-d
     MatGridListModule,
     MatDialogModule
   ],
-  providers: [ QuestionnaireService ],
+  providers: [ DataService ],
   bootstrap: [ AppComponent ],
   entryComponents: [ NewQuestionDialogComponent ]
 })

@@ -14,16 +14,16 @@ export class TopicComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {}
 
-  addQuestion(topicIdx, topicTitle): void {
+  addQuestion(topicIdx, topicID, topicTitle): void {
     let dialogRef = this.dialog.open(NewQuestionDialogComponent, {
       width: '550px',
-      data: { topicIdx: topicIdx, topicTitle: topicTitle }
+      data: { topicIdx: topicIdx, topicID: topicID, topicTitle: topicTitle }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed and the question was: ' + result + '. TopicIDX: ' + topicIdx);
+      console.log('The dialog was closed and the question was: ' + result + '. TopicIDX: ' + topicIdx  + '. TopicID: ' + topicID);
       if (result) {
-        this.topics[topicIdx].questions.push({'id': 44, 'title': result, 'glbAvg': 0});
+        this.topics[topicIdx].questions.push({'_topicID': topicID, 'id': 44, 'title': result, 'glbAvg': 0});
       }
     });
   }

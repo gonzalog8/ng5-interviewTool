@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionnaireService } from '../questionnaire.service';
+import { DataService } from '../data.service';
 import { Topic } from '../topic';
+import { Questionnaire } from '../questionnaire';
+import { Question } from '../question';
 
 @Component({
   selector: 'app-questionnaire',
@@ -8,12 +10,12 @@ import { Topic } from '../topic';
   styleUrls: ['./questionnaire.component.css']
 })
 export class QuestionnaireComponent implements OnInit {
-  topics: Topic[];
+  questionnaire: Questionnaire;
 
   getQuestionnaire() {
-    this.topics = this.questionnaireService.getQuestionnaire();
+    this.questionnaire = this.dataService.getQuestionnaireById(1);
   }
-  constructor(private questionnaireService: QuestionnaireService) { }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.getQuestionnaire();
