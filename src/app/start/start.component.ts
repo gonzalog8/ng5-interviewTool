@@ -19,8 +19,10 @@ import {map} from 'rxjs/operators/map';
 export class StartComponent implements OnInit {
   questionnaires: Questionnaire[];
 
-  getQuestionnaires() {
-    this.questionnaires = this.dataService.getQuestionnaires();
+  getQuestionnaires(): void {
+    this.dataService.getHTTPQuestionnaires().subscribe(qs =>
+      this.questionnaires = qs
+    );
   }
   questionnaireFormCtrl() {}
 

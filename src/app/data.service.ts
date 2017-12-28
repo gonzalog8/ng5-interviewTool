@@ -5,13 +5,18 @@ import { QUESTIONS } from './mock-data';
 import { Topic } from './topic';
 import { Questionnaire } from './questionnaire';
 import { Question } from './question';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class DataService {
-  constructor() { }
+  private questionnaireUrl = 'api/questionnaire';  // URL to web api
 
-  getQuestionnaires(): Questionnaire[] {
-    return QUESTIONNAIRE;
+  constructor(private http: HttpClient) { }
+
+  getQuestionnaires(): Observable<Questionnaire[]> {
+    return of(QUESTIONNAIRE);
   }
 
   getTopics(): Topic[] {
@@ -60,4 +65,10 @@ export class DataService {
     }
     return questions;
   }
+
+  // HTTP SERVICES
+  getHTTPQuestionnaires (): Observable<Questionnaire[]> {
+    return this.http.get<Questionnaire[]>(this.questionnaireUrl);
+  }
+
 }
