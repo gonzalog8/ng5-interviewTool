@@ -13,7 +13,7 @@ export class QuestionnaireComponent implements OnInit {
   questionnaire: Questionnaire;
 
   getQuestionnaire() {
-    this.questionnaire = this.dataService.getQuestionnaireById(1);
+    this.dataService.getHTTPQuestionnaireById(1).subscribe(qs => this.questionnaire = qs);
   }
   constructor(private dataService: DataService) { }
 

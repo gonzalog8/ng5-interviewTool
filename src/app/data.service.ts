@@ -8,6 +8,7 @@ import { Question } from './question';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class DataService {
@@ -15,19 +16,21 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
+  // PLAIN METHODS
   getQuestionnaires(): Observable<Questionnaire[]> {
     return of(QUESTIONNAIRE);
   }
 
-  getTopics(): Topic[] {
-    return TOPICS;
+  getTopics(): Observable<Topic[]> {
+    return of(TOPICS);
   }
 
-  getQuestions(): Question[] {
-    return QUESTIONS;
+  getQuestions(): Observable<Question[]> {
+    return of(QUESTIONS);
   }
 
-  getQuestionnaireById(id: number): Questionnaire {
+  // GET BY ID METHODS
+  getQuestionnaireById(id: number): Observable<Questionnaire> {
     let questionnaire: Questionnaire;
 
     for (let q of QUESTIONNAIRE) {
@@ -41,7 +44,7 @@ export class DataService {
       t.questions = this.getQuestionsByTopicID(t.id);
     }
 
-    return questionnaire;
+    return of(questionnaire);
   }
 
   getTopicsByQuestionnaireID(questionnaireID: number): Topic[] {
@@ -71,4 +74,17 @@ export class DataService {
     return this.http.get<Questionnaire[]>(this.questionnaireUrl);
   }
 
+  getHTTPQuestionnaireById(id: number): Observable<Questionnaire> {
+    // return this.http.get<Questionnaire>(this.questionnaireUrl + '/' + id);
+    return this.http.get<Questionnaire>(this.questionnaireUrl + '/' + id)
+      .pipe(
+        map(qn => {
+          qn.topics = this.getTopicsByQuestionnaireID(qn.id);
+          for (let t of qn.topics) {
+            t.questions = this.getQuestionsByTopicID(t.id);
+          }
+          return qn;
+        })
+      );
+  }
 }
