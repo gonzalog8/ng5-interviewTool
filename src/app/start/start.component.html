@@ -1,0 +1,22 @@
+<app-header></app-header>
+<mat-card>
+    <form class="example-form">
+      <mat-form-field >
+        <input matInput value="{{interviewer}}" placeholder="Interviewer">      
+      </mat-form-field>
+      <mat-form-field >
+        <input matInput value="{{candidate}}"   placeholder="Candidate">
+      </mat-form-field>
+      <mat-form-field >
+        <input matInput placeholder="Applying For" aria-label="Applying For" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let q of questionnaires" [value]="q.title">
+            <span>{{ q.title }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+        
+      <button mat-raised-button color="primary" (click)=startInterview()>Start</button>
+    </form>
+  </mat-card>
+  

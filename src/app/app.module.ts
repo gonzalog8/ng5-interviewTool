@@ -3,13 +3,14 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatToolbarModule } from '@angular/material';
+import { MatToolbarModule, MatAutocompleteModule } from '@angular/material';
 import { MatExpansionModule } from '@angular/material';
 import { MatFormFieldModule, MatInput, MatInputModule, MatCardModule } from '@angular/material/';
 import { MatDialogModule } from '@angular/material';
 import { MatSliderModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatGridListModule } from '@angular/material';
+
 
 import { DataService } from './data.service';
 import 'hammerjs';
@@ -22,6 +23,8 @@ import { TopicComponent } from './topic/topic.component';
 import { QuestionComponent } from './question/question.component';
 import { AnswerComponent } from './answer/answer.component';
 import { NewQuestionDialogComponent } from './new-question-dialog/new-question-dialog.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { StartComponent } from './start/start.component';
 
 
 @NgModule({
@@ -33,7 +36,8 @@ import { NewQuestionDialogComponent } from './new-question-dialog/new-question-d
     TopicComponent,
     QuestionComponent,
     AnswerComponent,
-    NewQuestionDialogComponent
+    NewQuestionDialogComponent,
+    StartComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,9 @@ import { NewQuestionDialogComponent } from './new-question-dialog/new-question-d
     MatSliderModule,
     MatButtonModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatAutocompleteModule,
+    AppRoutingModule
   ],
   providers: [ DataService ],
   bootstrap: [ AppComponent ],
