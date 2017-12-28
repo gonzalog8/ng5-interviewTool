@@ -28,7 +28,7 @@ export class InMemoryDataService implements InMemoryDbService {
         'questions': null
       }
     ];
-    const questions = [
+    const question = [
       { '_topicID': 1, 'id': 1, 'title': 'What is a Constructor?', 'glbAvg' : 4.1 },
       { '_topicID': 1, 'id': 2, 'title': 'What is an Abstract Class?', 'glbAvg' : 4.3 },
       { '_topicID': 1, 'id': 3, 'title': 'What is an Interface?', 'glbAvg' : 4.2 },
@@ -36,6 +36,6 @@ export class InMemoryDataService implements InMemoryDbService {
       { '_topicID': 2, 'id': 4, 'title': 'What is Dependency Injection?', 'glbAvg' : 3.5 },
       { '_topicID': 2, 'id': 5, 'title': 'What are the types of DI in Spring?', 'glbAvg' : 3.5 }
     ];
-    return { questionnaire, topics, questions };
+    return { questionnaire, topics, question };
     }
   }

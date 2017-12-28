@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Topic } from '../topic';
 import { NewQuestionDialogComponent } from '../new-question-dialog/new-question-dialog.component';
+import { DataService } from '../data.service';
+import { Question } from '../question';
 
 @Component({
   selector: 'app-topic',
@@ -12,7 +14,7 @@ import { NewQuestionDialogComponent } from '../new-question-dialog/new-question-
 export class TopicComponent implements OnInit {
   @Input() topics: Topic [];
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private dataService: DataService) {}
 
   addQuestion(topicIdx, topicID, topicTitle): void {
     let dialogRef = this.dialog.open(NewQuestionDialogComponent, {
@@ -23,7 +25,9 @@ export class TopicComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed and the question was: ' + result + '. TopicIDX: ' + topicIdx  + '. TopicID: ' + topicID);
       if (result) {
-        this.topics[topicIdx].questions.push({'_topicID': topicID, 'id': 44, 'title': result, 'glbAvg': 0});
+        this.dataService.putHTTPQuestion({'_topicID': topicID, 'title': result, 'glbAvg': 0} as Question).subscribe(newQ => {
+          this.topics[topicIdx].questions.push(newQ);
+        });
       }
     });
   }
