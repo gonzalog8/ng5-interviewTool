@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
 import { ReturnStatement } from '@angular/compiler/src/output/output_ast';
+import { Interview } from '../interview';
 
 
 @Component({
@@ -28,13 +29,25 @@ export class StartComponent implements OnInit {
       this.questionnaires = qs
     );
   }
-  questionnaireFormCtrl() {}
 
   startInterview() {
     if (this.candidate.invalid || this.interviewer.invalid || this.selectedQuestionnaire.invalid) {
       return;
     }
-    this.router.navigateByUrl('/questionnaire');
+    const interview = {
+      'interviewer': this.interviewer.value,
+      'candidate': this.candidate.value,
+      'state': 'inprocess',
+      'resultingSeniority': '',
+      'generalNotes': '',
+      'answers': null,
+    };
+    this.dataService.putHTTPInterview(interview as Interview).subscribe(newI => {
+      console.log('ID:' + newI.id);
+      console.log('interviewer:' + newI.interviewer);
+      console.log('candidate:' + newI.candidate);
+    });
+    // this.router.navigateByUrl('/questionnaire');
   }
 
   constructor(private router: Router, private dataService: DataService) { }

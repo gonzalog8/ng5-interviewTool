@@ -18,7 +18,6 @@ import { InMemoryDataService } from './in-memory-data.service';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
-import { InterviewerNameComponent } from './interviewer-name/interviewer-name.component';
 import { HeaderComponent } from './header/header.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { TopicComponent } from './topic/topic.component';
@@ -27,19 +26,20 @@ import { AnswerComponent } from './answer/answer.component';
 import { NewQuestionDialogComponent } from './new-question-dialog/new-question-dialog.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { StartComponent } from './start/start.component';
+import { InterviewComponent } from './interview/interview.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    InterviewerNameComponent,
     HeaderComponent,
     QuestionnaireComponent,
     TopicComponent,
     QuestionComponent,
     AnswerComponent,
     NewQuestionDialogComponent,
-    StartComponent
+    StartComponent,
+    InterviewComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
+import { Interview } from './interview';
 
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
@@ -36,6 +37,17 @@ export class InMemoryDataService implements InMemoryDbService {
       { '_topicID': 2, 'id': 4, 'title': 'What is Dependency Injection?', 'glbAvg' : 3.5 },
       { '_topicID': 2, 'id': 5, 'title': 'What are the types of DI in Spring?', 'glbAvg' : 3.5 }
     ];
-    return { questionnaire, topics, question };
+
+    const interview = [
+      {'id' : 1,
+      'interviewer': 'fake',
+      'candidate': 'lake',
+      'state': 'inprocess',
+      'resultingSeniority': 'junior',
+      'generalNotes': 'very junior',
+      'answers': null,
+    }
+    ];
+    return { questionnaire, topics, question, interview };
     }
   }

@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
+import { Interview } from './interview';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,6 +20,7 @@ export class DataService {
   // URLs to web api
   private questionnaireUrl = 'api/questionnaire';
   private questionUrl = 'api/question';
+  private interviewUrl = 'api/interview';
 
   constructor(private http: HttpClient) { }
 
@@ -101,6 +103,14 @@ export class DataService {
       catchError(this.handleError<Question>('addQuestion'))
     );
   }
+
+  putHTTPInterview (interview: Interview) {
+    return this.http.post<Interview>(this.interviewUrl, interview, httpOptions).pipe(
+      tap((i: Interview) => console.log(`service says interview added w/ id=${i.id}`)),
+      catchError(this.handleError<Interview>('addinterview'))
+    );
+  }
+
 
   /**
    * Handle Http operation that failed.
