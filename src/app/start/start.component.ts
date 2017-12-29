@@ -4,13 +4,15 @@ import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { Questionnaire } from '../questionnaire';
 
-import { MatAutocompleteModule } from '@angular/material';
+// import { MatAutocompleteModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material/select';
 import { FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
 import { ReturnStatement } from '@angular/compiler/src/output/output_ast';
 import { Interview } from '../interview';
+import { SingletonDataService } from '../singleton-data.service';
 
 
 @Component({
@@ -21,7 +23,7 @@ import { Interview } from '../interview';
 export class StartComponent implements OnInit {
   interviewer = new FormControl('', [Validators.required]);
   candidate = new FormControl('', [Validators.required]);
-  selectedQuestionnaire = new FormControl('', [Validators.required]);
+  questionnaireControl = new FormControl('', [Validators.required]);
   questionnaires: Questionnaire[];
 
   getQuestionnaires(): void {
@@ -31,7 +33,7 @@ export class StartComponent implements OnInit {
   }
 
   startInterview() {
-    if (this.candidate.invalid || this.interviewer.invalid || this.selectedQuestionnaire.invalid) {
+    if (this.candidate.invalid || this.interviewer.invalid || this.questionnaireControl.invalid) {
       return;
     }
     const interview = {
@@ -43,14 +45,13 @@ export class StartComponent implements OnInit {
       'answers': null,
     };
     this.dataService.putHTTPInterview(interview as Interview).subscribe(newI => {
-      console.log('ID:' + newI.id);
-      console.log('interviewer:' + newI.interviewer);
-      console.log('candidate:' + newI.candidate);
+      this.singletonDataService.setInterviewID(newI.id);
+      this.singletonDataService.setQuestionnaireID(this.questionnaireControl.value.id);
     });
-    // this.router.navigateByUrl('/questionnaire');
+    this.router.navigateByUrl('/questionnaire/' + this.questionnaireControl.value.id);
   }
 
-  constructor(private router: Router, private dataService: DataService) { }
+  constructor(private router: Router, private dataService: DataService, private singletonDataService: SingletonDataService) { }
 
   ngOnInit() {
     this.getQuestionnaires();

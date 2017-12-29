@@ -4,7 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatToolbarModule, MatAutocompleteModule } from '@angular/material';
+import { MatToolbarModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material';
 import { MatFormFieldModule, MatInput, MatInputModule, MatCardModule } from '@angular/material/';
 import { MatDialogModule } from '@angular/material';
@@ -27,6 +28,7 @@ import { NewQuestionDialogComponent } from './new-question-dialog/new-question-d
 import { AppRoutingModule } from './/app-routing.module';
 import { StartComponent } from './start/start.component';
 import { InterviewComponent } from './interview/interview.component';
+import { SingletonDataService } from './singleton-data.service';
 
 
 @NgModule({
@@ -55,7 +57,7 @@ import { InterviewComponent } from './interview/interview.component';
     MatButtonModule,
     MatGridListModule,
     MatDialogModule,
-    MatAutocompleteModule,
+    MatSelectModule,
     AppRoutingModule,
     HttpClientModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
@@ -65,7 +67,7 @@ import { InterviewComponent } from './interview/interview.component';
       InMemoryDataService, { dataEncapsulation: false }
     )
   ],
-  providers: [ DataService ],
+  providers: [ DataService, SingletonDataService ],
   bootstrap: [ AppComponent ],
   entryComponents: [ NewQuestionDialogComponent ]
 })

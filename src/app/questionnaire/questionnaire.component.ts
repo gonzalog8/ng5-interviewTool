@@ -3,6 +3,7 @@ import { DataService } from '../data.service';
 import { Topic } from '../topic';
 import { Questionnaire } from '../questionnaire';
 import { Question } from '../question';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-questionnaire',
@@ -13,9 +14,11 @@ export class QuestionnaireComponent implements OnInit {
   questionnaire: Questionnaire;
 
   getQuestionnaire() {
-    this.dataService.getHTTPQuestionnaireById(1).subscribe(qs => this.questionnaire = qs);
+    const id = +this.route.snapshot.paramMap.get('id');
+    console.log('getQuestionnaire recieved ID: ' + id);
+    this.dataService.getHTTPQuestionnaireById(id).subscribe(qs => this.questionnaire = qs);
   }
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.getQuestionnaire();
