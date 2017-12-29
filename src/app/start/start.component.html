@@ -1,19 +1,22 @@
 <app-header></app-header>
 <mat-card>
     <form class="example-form">
-      <mat-form-field >
-        <input matInput value="{{interviewer}}" placeholder="Interviewer">      
+      <mat-form-field>
+        <input matInput [formControl]="interviewer" placeholder="Interviewer" required>  
+        <mat-error *ngIf="interviewer.invalid">You Must enter an Inteviewer</mat-error>    
       </mat-form-field>
       <mat-form-field >
-        <input matInput value="{{candidate}}"   placeholder="Candidate">
+        <input matInput [formControl]="candidate"  placeholder="Candidate" required>
+        <mat-error *ngIf="candidate.invalid">You Must enter a Candidate</mat-error>    
       </mat-form-field>
       <mat-form-field >
-        <input matInput placeholder="Applying For" aria-label="Applying For" [matAutocomplete]="auto">
+        <input matInput [formControl]="selectedQuestionnaire" placeholder="Applying For" aria-label="Applying For" [matAutocomplete]="auto" required>
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let q of questionnaires" [value]="q.title">
             <span>{{ q.title }}</span>
           </mat-option>
         </mat-autocomplete>
+        <mat-error *ngIf="candidate.invalid">You Must Select a Questionnaire</mat-error>    
       </mat-form-field>
         
       <button mat-raised-button color="primary" (click)=startInterview()>Start</button>

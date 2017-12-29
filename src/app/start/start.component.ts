@@ -5,10 +5,11 @@ import { DataService } from '../data.service';
 import { Questionnaire } from '../questionnaire';
 
 import { MatAutocompleteModule } from '@angular/material';
-import { FormControl } from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
-import {startWith} from 'rxjs/operators/startWith';
-import {map} from 'rxjs/operators/map';
+import { FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { startWith } from 'rxjs/operators/startWith';
+import { map } from 'rxjs/operators/map';
+import { ReturnStatement } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -17,6 +18,9 @@ import {map} from 'rxjs/operators/map';
   styleUrls: ['./start.component.css']
 })
 export class StartComponent implements OnInit {
+  interviewer = new FormControl('', [Validators.required]);
+  candidate = new FormControl('', [Validators.required]);
+  selectedQuestionnaire = new FormControl('', [Validators.required]);
   questionnaires: Questionnaire[];
 
   getQuestionnaires(): void {
@@ -27,6 +31,9 @@ export class StartComponent implements OnInit {
   questionnaireFormCtrl() {}
 
   startInterview() {
+    if (this.candidate.invalid || this.interviewer.invalid || this.selectedQuestionnaire.invalid) {
+      return;
+    }
     this.router.navigateByUrl('/questionnaire');
   }
 
