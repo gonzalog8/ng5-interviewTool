@@ -1,13 +1,15 @@
 <mat-grid-list cols="3" rowHeight="80px">
   <mat-grid-tile>
-    <span>Answer:  </span> <mat-slider min=1 max=5 step=1 tick-interval=1 thumbLabel=ture> </mat-slider>
+      <span>Answer:  </span> <mat-slider [(ngModel)]="grade" min=1 max=5 step=1 tick-interval=1 thumbLabel=ture>
+      </mat-slider>
+      <mat-hint *ngIf="grade" class="grade-hint">{{ gradeHint[grade] }}</mat-hint>
   </mat-grid-tile>
   <mat-grid-tile>
-    <mat-form-field class="answer-notes">
-      <textarea matInput matTextareaAutosize placeholder="Notes"></textarea>
+    <mat-form-field class="answer-notes" >
+      <textarea [(ngModel)]="notes" matInput matTextareaAutosize placeholder="Notes"></textarea>
     </mat-form-field>
   </mat-grid-tile>  
   <mat-grid-tile>
-    <button mat-raised-button color="primary">Save</button>
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
   </mat-grid-tile>  
 </mat-grid-list> 

@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Interview } from './interview';
+import { Answer } from './answer';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -21,6 +22,7 @@ export class DataService {
   private questionnaireUrl = 'api/questionnaire';
   private questionUrl = 'api/question';
   private interviewUrl = 'api/interview';
+  private answerUrl = 'api/answer';
 
   constructor(private http: HttpClient) { }
 
@@ -96,21 +98,41 @@ export class DataService {
       );
   }
 
-  // HTTP PUT SERVICES
-  putHTTPQuestion (question: Question) {
+  getHTTPAnswers (): Observable<Answer[]> {
+    return this.http.get<Answer[]>(this.answerUrl);
+  }
+  getHTTPAnswerById (id: number): Observable<Answer> {
+    return this.http.get<Answer>(this.answerUrl + '/' + id);
+  }
+
+  // HTTP POST SERVICES
+  postHTTPQuestion (question: Question) {
     return this.http.post<Question>(this.questionUrl, question, httpOptions).pipe(
       tap((q: Question) => console.log(`service says questions added w/ id=${q.id}`)),
       catchError(this.handleError<Question>('addQuestion'))
     );
   }
 
-  putHTTPInterview (interview: Interview) {
+  postHTTPInterview (interview: Interview) {
     return this.http.post<Interview>(this.interviewUrl, interview, httpOptions).pipe(
       tap((i: Interview) => console.log(`service says interview added w/ id=${i.id}`)),
-      catchError(this.handleError<Interview>('addinterview'))
+      catchError(this.handleError<Interview>('addInterview'))
     );
   }
 
+  postHTTPAnswer (answer: Answer) {
+    return this.http.post<Answer>(this.answerUrl, answer, httpOptions).pipe(
+      tap((a: Answer) => console.log(`service says answer added w/ id=${a.id}`)),
+      catchError(this.handleError<Answer>('addAnswer'))
+    );
+  }
+
+  putHTTPAnswer (answer: Answer) {
+    return this.http.put<Answer>(this.answerUrl, answer, httpOptions).pipe(
+      // tap((a: Answer) => console.log(`service says answer updated w/ id=${a.id}`)),
+      catchError(this.handleError<Answer>('updateAnswer'))
+    );
+  }
 
   /**
    * Handle Http operation that failed.

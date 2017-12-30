@@ -44,7 +44,7 @@ export class StartComponent implements OnInit {
       'generalNotes': '',
       'answers': null,
     };
-    this.dataService.putHTTPInterview(interview as Interview).subscribe(newI => {
+    this.dataService.postHTTPInterview(interview as Interview).subscribe(newI => {
       this.singletonDataService.setInterviewID(newI.id);
       this.singletonDataService.setQuestionnaireID(this.questionnaireControl.value.id);
     });

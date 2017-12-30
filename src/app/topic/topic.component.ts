@@ -25,7 +25,7 @@ export class TopicComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed and the question was: ' + result + '. TopicIDX: ' + topicIdx  + '. TopicID: ' + topicID);
       if (result) {
-        this.dataService.putHTTPQuestion({'_topicID': topicID, 'title': result, 'glbAvg': 0} as Question).subscribe(newQ => {
+        this.dataService.postHTTPQuestion({'_topicID': topicID, 'title': result, 'glbAvg': 0} as Question).subscribe(newQ => {
           this.topics[topicIdx].questions.push(newQ);
         });
       }

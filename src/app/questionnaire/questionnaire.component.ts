@@ -18,6 +18,18 @@ export class QuestionnaireComponent implements OnInit {
     console.log('getQuestionnaire recieved ID: ' + id);
     this.dataService.getHTTPQuestionnaireById(id).subscribe(qs => this.questionnaire = qs);
   }
+
+  getAnswers() {
+    this.dataService.getHTTPAnswers().subscribe(answers => {
+      for(let a of answers) {
+        console.log('---')
+        for (let prop in a) {
+          console.log(prop + ': ' + a[prop]);
+        }
+      }
+    });
+  }
+
   constructor(private dataService: DataService, private route: ActivatedRoute) { }
 
   ngOnInit() {

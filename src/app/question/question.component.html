@@ -10,8 +10,7 @@
             Global Average Scoring {{q.glbAvg}} 
         </mat-panel-description>
       </mat-expansion-panel-header>
-       <!-- TopicId= {{topicId}} -->
-       <app-answer></app-answer>
+       <app-answer [question]=q [topic]=topic></app-answer>
     </mat-expansion-panel>
   </li>
 </ul>

@@ -6,6 +6,6 @@ export class Answer {
     topic: string;
     isExtraCredit: boolean;
     id: number;
-    notes: string;
     grade: number;
+    notes: string;
 }

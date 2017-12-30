@@ -46,8 +46,21 @@ export class InMemoryDataService implements InMemoryDbService {
       'resultingSeniority': 'junior',
       'generalNotes': 'very junior',
       'answers': null,
-    }
+      }
     ];
-    return { questionnaire, topics, question, interview };
+
+    const answer = [
+      {'id' : 1,
+       '_interivewID': 1,
+       '_questionID': 1,
+       '_topicID': 1,
+       'topic': 'fake topic',
+       'question': 'fake question',
+       'grade': 1,
+       'notes': 'fake notes',
+       'isExtraCredit': false,
+      }
+    ];
+    return { questionnaire, topics, question, interview, answer };
     }
   }

@@ -2,3 +2,8 @@
     width: 380px;
     height: 40px;
 }
+.grade-hint{
+    font-size: 11px;
+    position: absolute;
+    bottom: 10px;
+}

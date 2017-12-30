@@ -9,7 +9,7 @@
               Global Average Scoring {{topic.glbAvg}}
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <app-question [questions]=topic.questions></app-question>    
+        <app-question [questions]=topic.questions [topic]=topic></app-question>    
         <button mat-raised-button color="primary" (click)="addQuestion(idx, topic.id, topic.title)">Add Quesion</button>
       </mat-expansion-panel>
   </li>
