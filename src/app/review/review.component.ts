@@ -14,7 +14,7 @@ import { FormControl, Validators } from '@angular/forms';
 export class ReviewComponent implements OnInit {
   interview: Interview;
   resultingSeniority: string;
-  showableTopic: Map<number, ShowableTopic>;
+  showableTopic: ShowableTopic[] = new Array<ShowableTopic>();
   gradeHint = {
     1: '1 - Cannot Perform',
     2: '2 - Can perform with supervision',
@@ -48,7 +48,6 @@ export class ReviewComponent implements OnInit {
     // this.loadData();
     this.loadFakeData();
     this.interview.answers.sort( (a, b) => a._topicID - b._topicID);
-    this.showableTopic = new Map<number, ShowableTopic>();
     this.groupAnswersByTopic();
 
   }
@@ -69,25 +68,32 @@ export class ReviewComponent implements OnInit {
   saveAndClose() {
     console.log('notes: ' + this.interview.generalNotes);
     console.log('srty: ' + this.seniorityControl.value);
+    this.interview.resultingSeniority = this.seniorityControl.value;
+    this.interview.state = 'Finalized';
+    this.dataService.putHTTPInterview(this.interview).subscribe(data => {
+      console.log('interview saved. Data: ' + data);
+    });
  }
   groupAnswersByTopic() {
     let previousTopicId: number;
+    let indx: number = -1;
     for ( let eachAnswer of this.interview.answers ) {
 
       if ( eachAnswer._topicID === previousTopicId ) {
-        this.showableTopic.get(eachAnswer._topicID).answersList.push(eachAnswer);
-        this.showableTopic.get(eachAnswer._topicID).avg =
-                            ( this.showableTopic.get(eachAnswer._topicID).avg
+        this.showableTopic[indx].answersList.push(eachAnswer);
+        this.showableTopic[indx].avg =
+                            ( this.showableTopic[indx].avg
                             + eachAnswer.grade )
                             / 2;
       } else {
+        indx += 1;
         const st = new ShowableTopic();
         st.title = eachAnswer.topic;
         st.avg   = eachAnswer.grade;
         st.answersList = new Array<Answer>();
         st.answersList.push(eachAnswer);
 
-        this.showableTopic.set(eachAnswer._topicID, st);
+        this.showableTopic[indx] = st;
         previousTopicId = eachAnswer._topicID;
       }
     }

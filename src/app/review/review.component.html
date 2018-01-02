@@ -11,15 +11,15 @@
     </mat-card-content>
 </mat-card>
 
-<ul class="ul-cards" *ngFor=" let key of showableTopic.keys()  ">
+<ul class="ul-cards" *ngFor=" let eachST of showableTopic  ">
   <li class="showableTopicList">
     <mat-card>
       <mat-card-header>
-        <mat-card-title>{{ showableTopic.get(key).title }}</mat-card-title>
-        <mat-card-subtitle>Topic grade:  {{ showableTopic.get(key).avg }}</mat-card-subtitle>
+        <mat-card-title>{{ eachST.title }}</mat-card-title>
+        <mat-card-subtitle>Topic grade:  {{ eachST.avg }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <ul class="ul-answers" *ngFor=" let eachAnswer of showableTopic.get(key).answersList ">
+        <ul class="ul-answers" *ngFor=" let eachAnswer of eachST.answersList ">
             <li class="showableTopicList">
               <strong> {{ eachAnswer.question }} </strong>
               <br />
