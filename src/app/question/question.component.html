@@ -4,11 +4,14 @@
     class="question-header" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
       <mat-expansion-panel-header>
         <mat-panel-title>
+          <span class="avg" matTooltip="Global Average">
+              {{ q.glbAvg }}
+          </span>
           {{q.title}}
         </mat-panel-title>
-        <mat-panel-description>
-            Global Average Scoring {{q.glbAvg}} 
-        </mat-panel-description>
+        <span class="asked" matTooltip="Asked 157 times">
+            Asked 157 times
+        </span>
       </mat-expansion-panel-header>
        <app-answer [question]=q [topic]=topic></app-answer>
     </mat-expansion-panel>

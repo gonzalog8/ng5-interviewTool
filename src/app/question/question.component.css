@@ -7,3 +7,20 @@
 .question-panel-body{
     padding-top:10px
 }
+.avg {
+    background-color: #e66d24;
+    color: white;
+    float: left;
+    padding: 2px 7px;
+    border-radius: 7px;
+    margin-right: 5px;
+}
+.asked {
+    background-color: rgb(226, 188, 43);
+    color: white;
+    float: left;
+    padding: 2px 7px;
+    border-radius: 7px;
+    margin-right: 10px;
+    font-size: small;
+}
