@@ -5,7 +5,7 @@
       </mat-panel-title>
   </mat-expansion-panel-header>
     <ol reversed *ngIf="logService.logEntries.length">
-      <li *ngFor="let eachEntry of logService.logEntries.reverse()"> {{ eachEntry }}</li>
+      <li *ngFor="let eachEntry of logService.logEntries.slice(0).reverse()"> {{ eachEntry }}</li>
     </ol>
     <div class="content-to-right-box">
       <button class="clear-button" mat-button (click)="clearLogs()" matTooltip="Can NOT be undone">Clear Console</button>

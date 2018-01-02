@@ -37,7 +37,6 @@ export class AnswerComponent implements OnInit {
       this.answer.isExtraCredit = false;
 
       this.dataService.postHTTPAnswer(this.answer).subscribe(a => {
-        console.log('New Answer saved w/id: ' + a.id);
         this.answer = a;
         this.singletonDataService.getInterview().answers.push(a);
       });
@@ -46,7 +45,6 @@ export class AnswerComponent implements OnInit {
       this.answer.notes         = this.notes || '';
 
       this.dataService.putHTTPAnswer(this.answer).subscribe(a => {
-        // console.log('Answer updated saved w/id: ' + a.id);
         this.answer = a;
         // TODO: UPDATE ANWSER IN INTERVIVEW.ANSWERS ARRAY.
       });
