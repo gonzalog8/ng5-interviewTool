@@ -3,7 +3,8 @@ import { DataService } from '../data.service';
 import { Topic } from '../topic';
 import { Questionnaire } from '../questionnaire';
 import { Question } from '../question';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SingletonDataService } from '../singleton-data.service';
 
 @Component({
   selector: 'app-questionnaire',
@@ -30,9 +31,24 @@ export class QuestionnaireComponent implements OnInit {
     });
   }
 
-  constructor(private dataService: DataService, private route: ActivatedRoute) { }
+  validateCorrectNavigation() {
+    if ( !this.singletonDataService.getInterview()) {
+      console.log('There is no interview generated. Redirecting to start page.');
+      this.router.navigateByUrl('');
+    }
+  }
+
+  getCloseAndReview() {
+    this.router.navigateByUrl('review');
+  }
+
+  constructor(private dataService: DataService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private singletonDataService: SingletonDataService ) { }
 
   ngOnInit() {
+    this.validateCorrectNavigation();
     this.getQuestionnaire();
   }
 

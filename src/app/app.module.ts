@@ -12,6 +12,8 @@ import { MatDialogModule } from '@angular/material';
 import { MatSliderModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatGridListModule } from '@angular/material';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { DataService } from './data.service';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -29,6 +31,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { StartComponent } from './start/start.component';
 import { InterviewComponent } from './interview/interview.component';
 import { SingletonDataService } from './singleton-data.service';
+import { ReviewComponent } from './review/review.component';
 
 
 @NgModule({
@@ -41,7 +44,8 @@ import { SingletonDataService } from './singleton-data.service';
     AnswerComponent,
     NewQuestionDialogComponent,
     StartComponent,
-    InterviewComponent
+    InterviewComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +62,8 @@ import { SingletonDataService } from './singleton-data.service';
     MatGridListModule,
     MatDialogModule,
     MatSelectModule,
+    MatChipsModule,
+    MatTooltipModule,
     AppRoutingModule,
     HttpClientModule,
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests

@@ -1,31 +1,33 @@
 import { Injectable } from '@angular/core';
+import { Interview } from './interview';
+import { Questionnaire } from './questionnaire';
 
 @Injectable()
 export class SingletonDataService {
-  private _interviewID: number;
-  private _questionnaireID: number;
+  private _interview: Interview;
+  private _questionnaire: Questionnaire;
 
   constructor() { }
 
-  setInterviewID(interviewID: number): void {
-    if (this._interviewID) {
+  setInterview(interview: Interview): void {
+    if (this._interview) {
       return;
     }
-    this._interviewID = interviewID;
+    this._interview = interview;
   }
 
-  setQuestionnaireID(questionnaireID: number): void {
-    if (this._questionnaireID) {
+  setQuestionnaire(questionnaire: Questionnaire): void {
+    if (this._questionnaire) {
       return;
     }
-    this._questionnaireID = questionnaireID;
+    this._questionnaire = questionnaire;
   }
 
-  getInterviewID(): number {
-    return this._interviewID;
+  getInterview(): Interview {
+    return this._interview;
   }
 
-  getQuestionnaireID(): number {
-    return this._questionnaireID;
+  getQuestionnaire(): Questionnaire {
+    return this._questionnaire;
   }
 }

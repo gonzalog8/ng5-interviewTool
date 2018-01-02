@@ -50,13 +50,13 @@ export class InMemoryDataService implements InMemoryDbService {
     ];
 
     const answer = [
-      {'id' : 1,
-       '_interivewID': 1,
-       '_questionID': 1,
-       '_topicID': 1,
+      {'id' : 0,
+       '_interivewID': 0,
+       '_questionID': 0,
+       '_topicID': 0,
        'topic': 'fake topic',
        'question': 'fake question',
-       'grade': 1,
+       'grade': 0,
        'notes': 'fake notes',
        'isExtraCredit': false,
       }

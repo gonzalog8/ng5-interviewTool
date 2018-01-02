@@ -11,9 +11,9 @@ import { Answer } from '../answer';
   styleUrls: ['./answer.component.css']
 })
 export class AnswerComponent implements OnInit {
-  private grade: number;
-  private notes: string;
-  private gradeHint = {
+  grade: number;
+  notes: string;
+  gradeHint = {
     1: '1 - Cannot Perform',
     2: '2 - Can perform with supervision',
     3: '3 - Can perform with limited supervision',
@@ -27,7 +27,7 @@ export class AnswerComponent implements OnInit {
   save() {
     if (!this.answer) {
       this.answer  = new Answer();
-      this.answer._interivewID  = this.singletonDataService.getInterviewID();
+      this.answer._interivewID  = this.singletonDataService.getInterview().id;
       this.answer._questionID   = this.question.id;
       this.answer._topicID      = this.topic.id;
       this.answer.topic         = this.topic.title;
@@ -39,6 +39,7 @@ export class AnswerComponent implements OnInit {
       this.dataService.postHTTPAnswer(this.answer).subscribe(a => {
         console.log('New Answer saved w/id: ' + a.id);
         this.answer = a;
+        this.singletonDataService.getInterview().answers.push(a);
       });
     } else {
       this.answer.grade         = this.grade;
@@ -47,6 +48,7 @@ export class AnswerComponent implements OnInit {
       this.dataService.putHTTPAnswer(this.answer).subscribe(a => {
         // console.log('Answer updated saved w/id: ' + a.id);
         this.answer = a;
+        // TODO: UPDATE ANWSER IN INTERVIVEW.ANSWERS ARRAY.
       });
 
     }

@@ -105,6 +105,10 @@ export class DataService {
     return this.http.get<Answer>(this.answerUrl + '/' + id);
   }
 
+  getHTTPAnswerByInterviewId (interviewId: number): Observable<Answer> {
+    return this.http.get<Answer>(this.answerUrl + '/?_interviewId=' + interviewId);
+  }
+
   // HTTP POST SERVICES
   postHTTPQuestion (question: Question) {
     return this.http.post<Question>(this.questionUrl, question, httpOptions).pipe(
@@ -127,10 +131,18 @@ export class DataService {
     );
   }
 
+  // HTTP PUT SERVICES
   putHTTPAnswer (answer: Answer) {
     return this.http.put<Answer>(this.answerUrl, answer, httpOptions).pipe(
       // tap((a: Answer) => console.log(`service says answer updated w/ id=${a.id}`)),
       catchError(this.handleError<Answer>('updateAnswer'))
+    );
+  }
+
+  putHTTPInterview (interview: Interview) {
+    return this.http.put<Interview>(this.interviewUrl, interview, httpOptions).pipe(
+      tap((i: Interview) => console.log(`service says interview updated w/ id=${interview.id}`)),
+      catchError(this.handleError<Interview>('updateInterview'))
     );
   }
 

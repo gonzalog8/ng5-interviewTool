@@ -13,6 +13,7 @@ import { map } from 'rxjs/operators/map';
 import { ReturnStatement } from '@angular/compiler/src/output/output_ast';
 import { Interview } from '../interview';
 import { SingletonDataService } from '../singleton-data.service';
+import { Answer } from '../answer';
 
 
 @Component({
@@ -42,13 +43,13 @@ export class StartComponent implements OnInit {
       'state': 'inprocess',
       'resultingSeniority': '',
       'generalNotes': '',
-      'answers': null,
+      'answers': new Array<Answer>(),
     };
     this.dataService.postHTTPInterview(interview as Interview).subscribe(newI => {
-      this.singletonDataService.setInterviewID(newI.id);
-      this.singletonDataService.setQuestionnaireID(this.questionnaireControl.value.id);
+      this.singletonDataService.setInterview(newI);
+      this.singletonDataService.setQuestionnaire(this.questionnaireControl.value);
+      this.router.navigateByUrl('/questionnaire/' + this.questionnaireControl.value.id);
     });
-    this.router.navigateByUrl('/questionnaire/' + this.questionnaireControl.value.id);
   }
 
   constructor(private router: Router, private dataService: DataService, private singletonDataService: SingletonDataService) { }
