@@ -1,6 +1,9 @@
 <app-header></app-header>
-<div *ngIf="questionnaire">
-    <app-topic [topics]=questionnaire.topics></app-topic>
+<div class="app-central-content">
+    <div *ngIf="questionnaire">
+        <app-topic [topics]=questionnaire.topics></app-topic>
+    </div>
+    <button mat-button (click)="getAnswers()">Get Answers</button>
+    <button mat-button (click)="getCloseAndReview()">Close And Review</button>
 </div>
-<button mat-button (click)="getAnswers()">Get Answers</button>
-<button mat-button (click)="getCloseAndReview()">Close And Review</button>
+<app-console></app-console>

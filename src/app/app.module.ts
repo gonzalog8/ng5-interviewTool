@@ -32,6 +32,8 @@ import { StartComponent } from './start/start.component';
 import { InterviewComponent } from './interview/interview.component';
 import { SingletonDataService } from './singleton-data.service';
 import { ReviewComponent } from './review/review.component';
+import { ConsoleComponent } from './console/console.component';
+import { LogService } from './log.service';
 
 
 @NgModule({
@@ -45,7 +47,8 @@ import { ReviewComponent } from './review/review.component';
     NewQuestionDialogComponent,
     StartComponent,
     InterviewComponent,
-    ReviewComponent
+    ReviewComponent,
+    ConsoleComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,7 @@ import { ReviewComponent } from './review/review.component';
       InMemoryDataService, { dataEncapsulation: false }
     )
   ],
-  providers: [ DataService, SingletonDataService ],
+  providers: [ DataService, SingletonDataService, LogService ],
   bootstrap: [ AppComponent ],
   entryComponents: [ NewQuestionDialogComponent ]
 })

@@ -1,5 +1,6 @@
 <app-header></app-header>
-<mat-card>
+<div class="app-central-content">
+  <mat-card>
     <form>
       <mat-form-field>
         <input matInput [formControl]="interviewer" placeholder="Interviewer" required>  
@@ -17,8 +18,10 @@
           </mat-option>
         </mat-select>
         <mat-error *ngIf="questionnaireControl.hasError('required')">You Must Select a Questionnaire</mat-error>
-        <mat-hint>{{questionnaireControl.value?.id}}</mat-hint>
+        <mat-hint> Currently only Java Developer has data</mat-hint>
       </mat-form-field>     
       <button mat-raised-button color="primary" (click)=startInterview()>Start</button>
     </form>
   </mat-card>
+</div>
+<app-console></app-console>

@@ -1,45 +1,45 @@
 <app-header></app-header>
-
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Final Review</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <strong> Interviewer: </strong> <i> {{ interview.interviewer }} </i>
-    <br />
-    <strong> Candidate: </strong> <i> {{ interview.candidate }} </i>
+<div class="app-central-content">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Final Review</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <strong> Interviewer: </strong> <i> {{ interview.interviewer }} </i>
+      <br />
+      <strong> Candidate: </strong> <i> {{ interview.candidate }} </i>
     </mat-card-content>
-</mat-card>
-
-<ul class="ul-cards" *ngFor=" let eachST of showableTopic  ">
-  <li class="showableTopicList">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>{{ eachST.title }}</mat-card-title>
-        <mat-card-subtitle>Topic grade:  {{ eachST.avg }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <ul class="ul-answers" *ngFor=" let eachAnswer of eachST.answersList ">
+  </mat-card>
+  
+  <ul class="ul-cards" *ngFor=" let eachST of showableTopic  ">
+    <li class="showableTopicList">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ eachST.title }}</mat-card-title>
+          <mat-card-subtitle>Topic grade:  {{ eachST.avg }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <ul class="ul-answers" *ngFor=" let eachAnswer of eachST.answersList ">
             <li class="showableTopicList">
               <strong> {{ eachAnswer.question }} </strong>
               <br />
               <span class="grade" matTooltip="{{ gradeHint[eachAnswer.grade] }}">
-                  {{ eachAnswer.grade }}
+                {{ eachAnswer.grade }}
               </span>
               <i> {{ eachAnswer.notes }} </i>
             </li>
             <br />
-        </ul>
-      </mat-card-content>
-    </mat-card>      
-  </li>
-</ul>
-
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>Final Review</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
+          </ul>
+        </mat-card-content>
+      </mat-card>      
+    </li>
+  </ul>
+  
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Final Review</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
       <mat-form-field>
         <mat-select placeholder="Resulting Seniority" [formControl]="seniorityControl" required>
           <mat-option>--</mat-option>
@@ -52,6 +52,10 @@
       <mat-form-field class="final-notes" >
         <textarea [(ngModel)]="interview.generalNotes" matInput matTextareaAutosize placeholder="General Notes"></textarea>
       </mat-form-field>
-  </mat-card-content>
-</mat-card>
-<button class="save-button" mat-raised-button color="warn" (click)="saveAndClose()">Save And Close</button>
+    </mat-card-content>
+  </mat-card>
+  <div class="content-to-right-box">
+    <button class="save-button" mat-raised-button color="warn" (click)="saveAndClose()">Save And Close</button>
+  </div>
+</div>
+<app-console></app-console>

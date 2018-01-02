@@ -8,3 +8,7 @@
     background-color: silver;
     padding-top: 20px !important;
 }
+
+.app-central-content {
+    min-height: 600px;
+}

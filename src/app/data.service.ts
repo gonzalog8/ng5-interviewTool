@@ -11,6 +11,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Interview } from './interview';
 import { Answer } from './answer';
+import { LogService } from './log.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,7 +25,7 @@ export class DataService {
   private interviewUrl = 'api/interview';
   private answerUrl = 'api/answer';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private logService: LogService) { }
 
   // PLAIN METHODS
   getQuestionnaires(): Observable<Questionnaire[]> {
@@ -112,21 +113,30 @@ export class DataService {
   // HTTP POST SERVICES
   postHTTPQuestion (question: Question) {
     return this.http.post<Question>(this.questionUrl, question, httpOptions).pipe(
-      tap((q: Question) => console.log(`service says questions added w/ id=${q.id}`)),
+      tap((q: Question) => {
+        console.log(`service says questions added w/ id=${q.id}`);
+        this.logService.log(`DataService: New Question added w/ id=${q.id}`);
+      }),
       catchError(this.handleError<Question>('addQuestion'))
     );
   }
 
   postHTTPInterview (interview: Interview) {
     return this.http.post<Interview>(this.interviewUrl, interview, httpOptions).pipe(
-      tap((i: Interview) => console.log(`service says interview added w/ id=${i.id}`)),
+      tap((i: Interview) => {
+        console.log(`service says interview added w/ id=${i.id}`);
+        this.logService.log(`DataService: New Interview Created w/ id=${i.id} and state=${i.state}`);
+      }),
       catchError(this.handleError<Interview>('addInterview'))
     );
   }
 
   postHTTPAnswer (answer: Answer) {
     return this.http.post<Answer>(this.answerUrl, answer, httpOptions).pipe(
-      tap((a: Answer) => console.log(`service says answer added w/ id=${a.id}`)),
+      tap((a: Answer) => {
+        console.log(`service says answer added w/ id=${a.id}`);
+        this.logService.log(`DataService: New Answer saved w/ id=${a.id}`);
+      }),
       catchError(this.handleError<Answer>('addAnswer'))
     );
   }
@@ -134,14 +144,20 @@ export class DataService {
   // HTTP PUT SERVICES
   putHTTPAnswer (answer: Answer) {
     return this.http.put<Answer>(this.answerUrl, answer, httpOptions).pipe(
-      // tap((a: Answer) => console.log(`service says answer updated w/ id=${a.id}`)),
+      tap((data: any) => {
+        console.log(`service says answer updated w/ id=${answer.id}`);
+        this.logService.log(`DataService: Answer w/ id=${answer.id} has been updated`);
+      }),
       catchError(this.handleError<Answer>('updateAnswer'))
     );
   }
 
   putHTTPInterview (interview: Interview) {
     return this.http.put<Interview>(this.interviewUrl, interview, httpOptions).pipe(
-      tap((i: Interview) => console.log(`service says interview updated w/ id=${interview.id}`)),
+      tap((i: Interview) => {
+        console.log(`service says interview updated w/ id=${interview.id}`);
+        this.logService.log(`DataService: Interview w/ id=${interview.id} has been updated, state=${interview.state}`);
+      }),
       catchError(this.handleError<Interview>('updateInterview'))
     );
   }
@@ -160,6 +176,7 @@ export class DataService {
 
     // TODO: better job of transforming error for user consumption
     console.log(`${operation} failed: ${error.message}`);
+    this.logService.log(`DataService-ERROR: ${operation} failed: ${error.message}`);
 
     // Let the app keep running by returning an empty result.
     return of(result as T);
