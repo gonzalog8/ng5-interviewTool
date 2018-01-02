@@ -1,16 +1,17 @@
-<ul class="topic-list">
-  <li *ngFor="let topic of topics; let idx = index" class="topic-list-item">
-    <mat-expansion-panel class="topic-header" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{topic.title}}
-          </mat-panel-title>
-          <mat-panel-description>
-              Global Average Scoring {{topic.glbAvg}}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <app-question [questions]=topic.questions [topic]=topic></app-question>    
-        <button mat-raised-button color="primary" (click)="addQuestion(idx, topic.id, topic.title)">Add Quesion</button>
-      </mat-expansion-panel>
-  </li>
-</ul>
+<mat-expansion-panel class="topic-header" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{topic.title}}
+    </mat-panel-title>
+    <mat-panel-description>
+        Global Average Scoring {{topic.glbAvg}}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <ul class="question-list">
+    <li *ngFor="let eachQ of topic.questions" class="question-list-item">
+      <app-question [question]=eachQ [topic]=topic></app-question>  
+    </li>
+  </ul>
+  <button mat-raised-button color="primary" (click)="addQuestion(topic.id, topic.title)">Add Quesion</button>
+</mat-expansion-panel>
+

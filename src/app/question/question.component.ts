@@ -8,7 +8,7 @@ import { Topic } from '../topic';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
-  @Input() questions: Question[];
+  @Input() question: Question;
   @Input() topic: Topic;
 
 

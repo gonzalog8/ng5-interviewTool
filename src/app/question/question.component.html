@@ -1,19 +1,15 @@
-  <ul class="question-list">
-  <li *ngFor="let q of questions" class="question-list-item">
-    <mat-expansion-panel *ngIf="q.topicId == topicId"
-    class="question-header" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <span class="avg" matTooltip="Global Average">
-              {{ q.glbAvg }}
-          </span>
-          {{q.title}}
-        </mat-panel-title>
-        <span class="asked" matTooltip="Asked 157 times">
-            Asked 157 times
-        </span>
-      </mat-expansion-panel-header>
-       <app-answer [question]=q [topic]=topic></app-answer>
-    </mat-expansion-panel>
-  </li>
-</ul>
+<mat-expansion-panel class="question-header" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <span class="avg" matTooltip="Global Average">
+          {{ question.glbAvg }}
+      </span>
+      {{question.title}}
+    </mat-panel-title>
+    <span class="asked" matTooltip="Asked 157 times">
+        Asked 157 times
+    </span>
+  </mat-expansion-panel-header>
+    <app-answer [question]=question [topic]=topic></app-answer>
+</mat-expansion-panel>
+

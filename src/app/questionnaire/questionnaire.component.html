@@ -1,7 +1,11 @@
 <app-header></app-header>
 <div class="app-central-content">
     <div *ngIf="questionnaire">
-        <app-topic [topics]=questionnaire.topics></app-topic>
+        <ul class="topic-list">
+            <li *ngFor="let topic of questionnaire.topics" class="topic-list-item">
+                <app-topic [topic]=topic></app-topic>
+            </li>
+        </ul>
     </div>
     <button mat-button (click)="getCloseAndReview()">Close And Review</button>
 </div>

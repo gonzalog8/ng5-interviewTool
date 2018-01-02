@@ -40,6 +40,7 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   getCloseAndReview() {
+    // TODO: UPDATE THE INTERVIEW OBJECT
     this.router.navigateByUrl('review');
   }
 
@@ -49,7 +50,7 @@ export class QuestionnaireComponent implements OnInit {
               private singletonDataService: SingletonDataService ) { }
 
   ngOnInit() {
-    this.validateCorrectNavigation();
+    // this.validateCorrectNavigation();
     this.getQuestionnaire();
   }
 

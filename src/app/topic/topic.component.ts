@@ -12,21 +12,21 @@ import { Question } from '../question';
 })
 
 export class TopicComponent implements OnInit {
-  @Input() topics: Topic [];
+  @Input() topic: Topic;
 
   constructor(public dialog: MatDialog, private dataService: DataService) {}
 
-  addQuestion(topicIdx, topicID, topicTitle): void {
+  addQuestion(topicID, topicTitle): void {
     let dialogRef = this.dialog.open(NewQuestionDialogComponent, {
       width: '550px',
-      data: { topicIdx: topicIdx, topicID: topicID, topicTitle: topicTitle }
+      data: { topicID: topicID, topicTitle: topicTitle }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed and the question was: ' + result + '. TopicIDX: ' + topicIdx  + '. TopicID: ' + topicID);
+      console.log('The dialog was closed and the question was: ' + result + '. topicID: ' + topicID);
       if (result) {
         this.dataService.postHTTPQuestion({'_topicID': topicID, 'title': result, 'glbAvg': 0} as Question).subscribe(newQ => {
-          this.topics[topicIdx].questions.push(newQ);
+          this.topic.questions.push(newQ);
         });
       }
     });
