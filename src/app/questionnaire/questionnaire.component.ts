@@ -20,6 +20,7 @@ export class QuestionnaireComponent implements OnInit {
     this.dataService.getHTTPQuestionnaireById(id).subscribe(qs => this.questionnaire = qs);
   }
 
+  // TODO: re-use for downloading functionality
   getAnswers() {
     this.dataService.getHTTPAnswers().subscribe(answers => {
       for(let a of answers) {
