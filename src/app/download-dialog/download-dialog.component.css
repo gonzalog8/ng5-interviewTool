@@ -1,0 +1,7 @@
+.interview-paragraph {
+    min-height: 300px;
+    overflow-y: auto;
+}
+.mat-dialog-content {
+    overflow: hidden;
+}

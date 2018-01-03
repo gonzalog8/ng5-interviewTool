@@ -34,6 +34,7 @@ import { SingletonDataService } from './singleton-data.service';
 import { ReviewComponent } from './review/review.component';
 import { ConsoleComponent } from './console/console.component';
 import { LogService } from './log.service';
+import { DownloadDialogComponent } from './download-dialog/download-dialog.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { LogService } from './log.service';
     StartComponent,
     InterviewComponent,
     ReviewComponent,
-    ConsoleComponent
+    ConsoleComponent,
+    DownloadDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +80,6 @@ import { LogService } from './log.service';
   ],
   providers: [ DataService, SingletonDataService, LogService ],
   bootstrap: [ AppComponent ],
-  entryComponents: [ NewQuestionDialogComponent ]
+  entryComponents: [ NewQuestionDialogComponent, DownloadDialogComponent ]
 })
 export class AppModule { }

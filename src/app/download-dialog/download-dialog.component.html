@@ -1,0 +1,9 @@
+<div class="new-question-dialog">
+    <h1 mat-dialog-title>Copy plaintext <strong>for this interview</strong></h1>
+      <div mat-dialog-content>
+      <p class="interview-paragraph"> {{ data.interview }} </p>
+      <div mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="data.newQuestion" cdkFocusInitial>OK</button>
+      </div>
+    </div>
+    
