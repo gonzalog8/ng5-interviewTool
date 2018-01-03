@@ -5,6 +5,7 @@ import { Interview } from '../interview';
 import { ShowableTopic } from '../showableTopic';
 import { Answer } from '../answer';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-review',
@@ -38,32 +39,29 @@ export class ReviewComponent implements OnInit {
     { name: 'Tech Director' },
   ];
 
-  constructor(private dataService: DataService, private singletonDataService: SingletonDataService) { }
+  constructor(private dataService: DataService,
+              private singletonDataService: SingletonDataService,
+              private router: Router) { }
 
   loadData() {
     this.interview = this.singletonDataService.getInterview();
   }
 
+  validateCorrectNavigation() {
+    if ( !this.singletonDataService.getInterview()) {
+      console.log('There is no interview generated. Redirecting to start page.');
+      this.router.navigateByUrl('');
+    }
+  }
+
   ngOnInit() {
-    // this.loadData();
-    this.loadFakeData();
+    this.validateCorrectNavigation();
+    this.loadData();
+    // this.loadFakeData();
     this.interview.answers.sort( (a, b) => a._topicID - b._topicID);
     this.groupAnswersByTopic();
 
   }
-
-  // getTopicAvg(topicID: number): number {
-  //   let topicSum: number = 0;
-  //   let topicCount: number = 0;
-
-  //   for (let eachAnswer of this.interview.answers) {
-  //     if (eachAnswer._topicID === topicID) {
-  //       topicSum += eachAnswer.grade;
-  //       topicCount += 1;
-  //     }
-  //   }
-  //   return topicSum / topicCount;
-  // }
 
   saveAndClose() {
     console.log('notes: ' + this.interview.generalNotes);
