@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Question } from '../question';
 import { Topic } from '../topic';
 
@@ -10,8 +10,16 @@ import { Topic } from '../topic';
 export class QuestionComponent implements OnInit {
   @Input() question: Question;
   @Input() topic: Topic;
+  isExpanded: boolean = false;
+  answeredWithGrade: number;
 
 
+  answerSaved(event) {
+    if (event) {
+      this.isExpanded = false;
+      this.answeredWithGrade = event;
+    }
+  }
   constructor() {
   }
 

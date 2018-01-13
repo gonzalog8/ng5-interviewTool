@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule, Input } from '@angular/core';
+import { Component, OnInit, NgModule, Input, Output, EventEmitter } from '@angular/core';
 import { SingletonDataService } from '../singleton-data.service';
 import { Question } from '../question';
 import { Topic } from '../topic';
@@ -22,6 +22,8 @@ export class AnswerComponent implements OnInit {
   };
   @Input() question: Question;
   @Input() topic: Topic;
+  @Output() onSaved = new EventEmitter<number>();
+
   private answer: Answer;
 
   save() {
@@ -39,6 +41,7 @@ export class AnswerComponent implements OnInit {
       this.dataService.postHTTPAnswer(this.answer).subscribe(a => {
         this.answer = a;
         this.singletonDataService.getInterview().answers.push(a);
+        this.onSaved.emit(a.grade);
       });
     } else {
       this.answer.grade         = this.grade;
@@ -46,6 +49,7 @@ export class AnswerComponent implements OnInit {
 
       this.dataService.putHTTPAnswer(this.answer).subscribe(a => {
         this.answer = a;
+        this.onSaved.emit(a.grade);
         // TODO: UPDATE ANWSER IN INTERVIVEW.ANSWERS ARRAY.
       });
 

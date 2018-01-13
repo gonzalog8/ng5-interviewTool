@@ -55,7 +55,7 @@ export class QuestionnaireComponent implements OnInit {
               private singletonDataService: SingletonDataService ) { }
 
   ngOnInit() {
-    // this.validateCorrectNavigation();
+    this.validateCorrectNavigation();
     this.getQuestionnaire();
   }
 

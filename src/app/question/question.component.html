@@ -1,15 +1,20 @@
-<mat-expansion-panel class="question-header" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+<mat-expansion-panel class="question-header" [expanded]="isExpanded" (opened)="isExpanded = true" (closed)="isExpanded = false">
   <mat-expansion-panel-header>
     <mat-panel-title>
-      <span class="avg" matTooltip="Global Average">
+      
+      <span *ngIf="!answerdWithGrade" class="avg" matTooltip="Global Average">
           {{ question.glbAvg }}
       </span>
+      <span *ngIf="answeredWithGrade" class="grade" matTooltip="Answered With Grade">
+        {{ answeredWithGrade }}
+    </span>
+
       {{question.title}}
     </mat-panel-title>
     <span class="asked" matTooltip="Asked 157 times">
         Asked 157 times
     </span>
   </mat-expansion-panel-header>
-    <app-answer [question]=question [topic]=topic></app-answer>
+    <app-answer [question]=question [topic]=topic (onSaved)="answerSaved($event)"></app-answer>
 </mat-expansion-panel>
 

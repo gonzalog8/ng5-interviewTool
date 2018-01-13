@@ -12,6 +12,14 @@
     border-radius: 7px;
     margin-right: 5px;
 }
+.grade {
+    background-color: #1fa71a;
+    color: white;
+    float: left;
+    padding: 2px 7px;
+    border-radius: 7px;
+    margin-right: 5px;
+}
 .asked {
     background-color: rgb(226, 188, 43);
     color: white;
