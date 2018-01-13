@@ -1,14 +1,12 @@
 <mat-expansion-panel class="question-header" [expanded]="isExpanded" (opened)="isExpanded = true" (closed)="isExpanded = false">
   <mat-expansion-panel-header>
     <mat-panel-title>
-      
-      <span *ngIf="!answerdWithGrade" class="avg" matTooltip="Global Average">
+      <span class="avg" matTooltip="Global Average">
           {{ question.glbAvg }}
       </span>
       <span *ngIf="answeredWithGrade" class="grade" matTooltip="Answered With Grade">
         {{ answeredWithGrade }}
     </span>
-
       {{question.title}}
     </mat-panel-title>
     <span class="asked" matTooltip="Asked 157 times">
