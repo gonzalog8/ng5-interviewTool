@@ -30,12 +30,12 @@ export class InMemoryDataService implements InMemoryDbService {
       }
     ];
     const question = [
-      { '_topicID': 1, 'id': 1, 'title': 'What is a Constructor?', 'glbAvg' : 4.1 },
-      { '_topicID': 1, 'id': 2, 'title': 'What is an Abstract Class?', 'glbAvg' : 4.3 },
-      { '_topicID': 1, 'id': 3, 'title': 'What is an Interface?', 'glbAvg' : 4.2 },
+      { '_topicID': 1, 'id': 1, 'title': 'What is a Constructor?', 'glbAvg' : 4.1, 'minimunSeniority': 'Jr', 'countOfUsage': 45 },
+      { '_topicID': 1, 'id': 2, 'title': 'What is an Abstract Class?', 'glbAvg' : 4.3, 'minimunSeniority': 'Jr', 'countOfUsage': 32 },
+      { '_topicID': 1, 'id': 3, 'title': 'What is an Interface?', 'glbAvg' : 4.2, 'minimunSeniority': 'Jr', 'countOfUsage': 34 },
 
-      { '_topicID': 2, 'id': 4, 'title': 'What is Dependency Injection?', 'glbAvg' : 2.5 },
-      { '_topicID': 2, 'id': 5, 'title': 'What are the types of DI in Spring?', 'glbAvg' : 3.0 }
+      { '_topicID': 2, 'id': 4, 'title': 'What is Dependency Injection?', 'glbAvg' : 2.5, 'minimunSeniority': 'SSr', 'countOfUsage': 38 },
+      { '_topicID': 2, 'id': 5, 'title': 'What are the types of DI in Spring?', 'glbAvg' : 3.0, 'minimunSeniority': 'Sr', 'countOfUsage': 29 }
     ];
 
     const interview = [

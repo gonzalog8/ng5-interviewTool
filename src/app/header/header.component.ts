@@ -12,11 +12,18 @@ export class HeaderComponent implements OnInit {
   interviewer;
   candidate;
 
+  data = 'some data here...';
+  blob = new Blob([this.data], { type: 'text/plain' });
+  url = window.URL;
+
+  blobFileURL = this.url.createObjectURL(this.blob);
+
   constructor() {
     this.title = 'Interview Tool';
     this.interviewer = 'Pepe';
     this.candidate = 'Fulanito';
   }
+
 
   ngOnInit() {
   }

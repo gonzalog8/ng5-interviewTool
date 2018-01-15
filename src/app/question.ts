@@ -3,4 +3,6 @@ export class Question {
     id: number;
     title: string;
     glbAvg: number;
+    minimunSeniority: string;
+    countOfUsage: number;
 }

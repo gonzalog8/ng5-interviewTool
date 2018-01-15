@@ -9,8 +9,11 @@
     </span>
       {{question.title}}
     </mat-panel-title>
-    <span class="asked" matTooltip="Asked 157 times">
-        Asked 157 times
+    <span class="srty" matTooltip="Seniority">
+      {{question.minimunSeniority}}
+    </span>
+    <span class="asked" matTooltip="Asked {{question.countOfUsage}} times">
+      {{question.countOfUsage}}
     </span>
   </mat-expansion-panel-header>
     <app-answer [question]=question [topic]=topic (onSaved)="answerSaved($event)"></app-answer>

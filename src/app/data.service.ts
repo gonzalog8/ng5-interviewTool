@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { QUESTIONNAIRE } from './mock-data';
+// import { QUESTIONNAIRE } from './mock-data';
 import { TOPICS } from './mock-data';
 import { QUESTIONS } from './mock-data';
 import { Topic } from './topic';
@@ -28,35 +28,35 @@ export class DataService {
   constructor(private http: HttpClient, private logService: LogService) { }
 
   // PLAIN METHODS
-  getQuestionnaires(): Observable<Questionnaire[]> {
-    return of(QUESTIONNAIRE);
-  }
+  // getQuestionnaires(): Observable<Questionnaire[]> {
+  //   return of(QUESTIONNAIRE);
+  // }
 
-  getTopics(): Observable<Topic[]> {
-    return of(TOPICS);
-  }
+  // getTopics(): Observable<Topic[]> {
+  //   return of(TOPICS);
+  // }
 
-  getQuestions(): Observable<Question[]> {
-    return of(QUESTIONS);
-  }
+  // getQuestions(): Observable<Question[]> {
+  //   return of(QUESTIONS);
+  // }
 
   // GET BY ID METHODS
-  getQuestionnaireById(id: number): Observable<Questionnaire> {
-    let questionnaire: Questionnaire;
+  // getQuestionnaireById(id: number): Observable<Questionnaire> {
+  //   let questionnaire: Questionnaire;
 
-    for (let q of QUESTIONNAIRE) {
-      if (q.id === id) {
-        questionnaire = q;
-      }
-    }
-    questionnaire.topics = this.getTopicsByQuestionnaireID(questionnaire.id);
+  //   for (let q of QUESTIONNAIRE) {
+  //     if (q.id === id) {
+  //       questionnaire = q;
+  //     }
+  //   }
+  //   questionnaire.topics = this.getTopicsByQuestionnaireID(questionnaire.id);
 
-    for (let t of questionnaire.topics) {
-      t.questions = this.getQuestionsByTopicID(t.id);
-    }
+  //   for (let t of questionnaire.topics) {
+  //     t.questions = this.getQuestionsByTopicID(t.id);
+  //   }
 
-    return of(questionnaire);
-  }
+  //   return of(questionnaire);
+  // }
 
   getTopicsByQuestionnaireID(questionnaireID: number): Topic[] {
     const topics: Topic[] = new Array<Topic>();
